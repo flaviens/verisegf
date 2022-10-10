@@ -19,7 +19,7 @@ targets:
     filesets:
       - files_cells
       - files_dv
-    toplevel: ariane_mem_top
+    toplevel: top
     tools:
       verilator:
         mode: cc
