@@ -1,0 +1,33 @@
+CAPI=2:
+name: "::verisegf:0.1"
+description: "Segfault with Verilator"
+
+filesets:
+  files_cells:
+    files:
+      - src/cva6_pickled.sv
+    file_type: systemVerilogSource
+
+  files_dv:
+    files:
+      - dv/toplevel.cc
+    file_type: cppSource
+
+targets:
+  default:
+    default_tool: verilator
+    filesets:
+      - files_cells
+      - files_dv
+    toplevel: ariane_mem_top
+    tools:
+      verilator:
+        mode: cc
+        verilator_options:
+          - '-CFLAGS "-std=c++11 -Wall -g -O0"'
+          - '-LDFLAGS "-pthread -lutil"'
+          - "-debug"
+          - "-Wall"
+          - "-Wno-PINCONNECTEMPTY"
+          - "-Wno-fatal"
+          - "-Wno-BLKANDNBLK"
